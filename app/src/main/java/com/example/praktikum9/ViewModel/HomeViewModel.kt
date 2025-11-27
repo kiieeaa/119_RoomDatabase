@@ -1,3 +1,5 @@
+package com.example.praktikum9.ViewModel
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.praktikum9.repositori.RepositoriSiswa
