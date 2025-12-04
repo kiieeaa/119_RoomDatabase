@@ -56,8 +56,13 @@ fun HostNavigasi(
             })
         ) {
 
+            DetailSiswaScreen(
+                navigateBack = { navController.navigateUp() }
+            )
+        }
+
 
         }
     }
-}
+
 
