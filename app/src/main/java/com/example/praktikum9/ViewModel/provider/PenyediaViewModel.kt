@@ -1,10 +1,12 @@
-package com.example.praktikum9.viewmodel.provider
+package com.example.praktikum9.ViewModel.provider
 
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.praktikum9.repositori.AplikasiSiswa
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.CreationExtras
+import com.example.praktikum9.ViewModel.DetailViewModel
 import com.example.praktikum9.ViewModel.EntryViewModel
 import com.example.praktikum9.ViewModel.HomeViewModel
 
@@ -26,6 +28,11 @@ object PenyediaViewModel {
             EntryViewModel(
                 aplikasiSiswa.container.repositoriSiswa
             )
+        }
+        initializer {
+            DetailViewModel(this.createSavedStateHandle(),
+                aplikasiSiswa().container.repositoriSiswa)
+
         }
     }
 }
