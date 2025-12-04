@@ -1,6 +1,7 @@
 package com.example.praktikum9.view
 
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,13 +33,12 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.praktikum9.R
 import com.example.praktikum9.room.Siswa
 import com.example.praktikum9.view.route.DestinasiHome
 import com.example.praktikum9.ViewModel.HomeViewModel
-import com.example.praktikum9.viewmodel.provider.PenyediaViewModel
+import com.example.praktikum9.ViewModel.provider.PenyediaViewModel
 
 
 
@@ -46,6 +46,8 @@ import com.example.praktikum9.viewmodel.provider.PenyediaViewModel
 @Composable
 fun HomeScreen(
     navigateToItemEntry: () -> Unit,
+    //nambah
+    navigateToItemUpdate: (Int) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ){
@@ -77,6 +79,8 @@ fun HomeScreen(
         val uiStateSiswa by viewModel.homeUiState.collectAsState()
         BodyHome(
             itemSiswa = uiStateSiswa.listSiswa,
+            //nambah
+            onSiswaClick = navigateToItemUpdate,
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
@@ -87,6 +91,8 @@ fun HomeScreen(
 @Composable
 fun BodyHome(
     itemSiswa: List<Siswa>,
+    // edit paeameter onSiswaClick
+    onSiswaClick: (Int) -> Unit,
     modifier: Modifier=Modifier){
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -101,6 +107,8 @@ fun BodyHome(
         } else {
             ListSiswa(
                 itemSiswa = itemSiswa,
+                //nambah
+                onSiswaClick = {onSiswaClick(it.id)},
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.padding_small))
             )
         }
@@ -110,6 +118,8 @@ fun BodyHome(
 @Composable
 fun ListSiswa(
     itemSiswa : List<Siswa>,
+    //nambah
+    onSiswaClick: (Siswa) -> Unit,
     modifier: Modifier=Modifier
 ){
     LazyColumn(modifier = Modifier){
@@ -117,7 +127,11 @@ fun ListSiswa(
                 person ->  DataSiswa(
             siswa = person,
             modifier = Modifier
-                .padding(dimensionResource(id = R.dimen.padding_small)))
+                .padding(dimensionResource(id = R.dimen.padding_small))
+                //nambah
+                .clickable { onSiswaClick(person)})
+
+
         }
     }
 }
