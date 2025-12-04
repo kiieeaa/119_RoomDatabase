@@ -29,7 +29,7 @@ import com.example.praktikum9.view.route.DestinasiEntry
 import com.example.praktikum9.ViewModel.DetailSiswa
 import com.example.praktikum9.ViewModel.EntryViewModel
 import com.example.praktikum9.ViewModel.UIStateSiswa
-import com.example.praktikum9.viewmodel.provider.PenyediaViewModel
+import com.example.praktikum9.ViewModel.provider.PenyediaViewModel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
